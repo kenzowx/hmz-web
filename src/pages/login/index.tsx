@@ -182,14 +182,14 @@ const Login = () => {
             </Button>
 
             {/* Links para "Esqueci minha senha" e "Cadastrar-se" */}
-            <Flex justify="space-between" mt={4}>
+            {/* <Flex justify="space-between" mt={4}>
               <Link color="blue.500" fontSize="sm" href="#">
                 Esqueci minha senha
               </Link>
               <Link color="blue.500" fontSize="sm" href="#">
                 Cadastrar-se
               </Link>
-            </Flex>
+            </Flex> */}
           </form>
         </Box>
       </Box>
