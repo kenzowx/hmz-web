@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Box, Flex, Button, useToast, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Button,
+  useToast,
+  useDisclosure,
+  Text,
+} from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 import api from "../../services/api";
 import Sidebar from "../../components/Sidebar";
@@ -25,7 +32,11 @@ const Dashboard = () => {
 
   // ✅ Estado e funções para os modais
   const { isOpen, onOpen, onClose } = useDisclosure(); // Modal de adicionar usuário
-  const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure(); // Modal de edição
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
+  } = useDisclosure(); // Modal de edição
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -52,18 +63,42 @@ const Dashboard = () => {
     <Flex height="100vh" width="100vw" bg="gray.100">
       <Sidebar />
       <Flex flex="1" direction="column">
-        <Header />
+        <Header
+          onOpen={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
 
-        <Box p={6} bg="white" m={4} borderRadius="md" boxShadow="md" overflowX="auto">
+        <Box
+          p={4}
+          bg="white"
+          m={{ base: 2, md: 4 }} // ✅ margem menor no mobile
+          borderRadius="md"
+          boxShadow="md"
+          overflowX="auto" // ✅ scroll lateral se necessário
+        >
           {/* ✅ Botão para adicionar novo usuário */}
-          <Flex justify="space-between" align="center" mb={4}>
+          <Flex
+            justify="space-between"
+            align="center"
+            mb={4}
+            wrap="wrap" // ✅ permite quebrar linha em telas menores
+            gap={4} // ✅ espaço entre elementos ao quebrar
+          >
+            <Text fontSize="lg" fontWeight="bold">
+              Usuários
+            </Text>
             <Button leftIcon={<FaPlus />} colorScheme="green" onClick={onOpen}>
               Novo
             </Button>
           </Flex>
 
           {/* ✅ Tabela de usuários */}
-          <UserTable users={users} onEdit={openEditModal} onDelete={loadUsers} />
+          <UserTable
+            users={users}
+            onEdit={openEditModal}
+            onDelete={loadUsers}
+          />
 
           {/* ✅ Paginação */}
           <Pagination
@@ -77,7 +112,12 @@ const Dashboard = () => {
 
       {/* ✅ Modais */}
       <UserModal isOpen={isOpen} onClose={onClose} reloadUsers={loadUsers} />
-      <EditUserModal isOpen={isEditOpen} onClose={onEditClose} reloadUsers={loadUsers} user={editingUser} />
+      <EditUserModal
+        isOpen={isEditOpen}
+        onClose={onEditClose}
+        reloadUsers={loadUsers}
+        user={editingUser}
+      />
     </Flex>
   );
 };

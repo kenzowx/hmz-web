@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  Box, Button, FormControl, FormLabel, Input, Flex, Text, VStack, useToast, Link, Image
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Flex,
+  Text,
+  VStack,
+  useToast,
+  Link,
+  Image,
 } from "@chakra-ui/react";
 import api from "../../services/api";
 import logo from "../../assets/logo_2.png";
@@ -14,7 +24,7 @@ interface LoginResponse {
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -33,7 +43,10 @@ const Login = () => {
     }
 
     try {
-      const response = await api.post<LoginResponse>("/admins/login", { email, password });
+      const response = await api.post<LoginResponse>("/admins/login", {
+        email,
+        password,
+      });
 
       if (response.status === 200 && response.data?.token) {
         toast({
@@ -67,23 +80,27 @@ const Login = () => {
   };
 
   return (
-    <Flex 
-      height="100vh" 
+    <Flex
+      height="100vh"
       width="100vw"
-      direction={{ base: "column", md: "row" }} 
+      direction={{ base: "column", md: "row" }}
     >
       {/* Lado Esquerdo - Texto */}
-      <Box 
-        flex="1" 
-        bg="gray.100" 
-        display="flex" 
-        alignItems="center" 
+      <Box
+        flex="1"
+        bg="gray.100"
+        display="flex"
+        alignItems="center"
         justifyContent="center"
         p={8}
         textAlign="center"
       >
         <VStack spacing={4}>
-          <Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold" color="gray.600">
+          <Text
+            fontSize={{ base: "2xl", md: "4xl" }}
+            fontWeight="bold"
+            color="gray.600"
+          >
             Simplificamos juntos
           </Text>
           <Text fontSize="sm" color="gray.500">
@@ -93,29 +110,29 @@ const Login = () => {
       </Box>
 
       {/* Lado Direito - Formulário */}
-      <Box 
-        flex="1" 
-        bg="gray.50" 
-        display="flex" 
-        alignItems="center" 
+      <Box
+        flex="1"
+        bg="gray.50"
+        display="flex"
+        alignItems="center"
         justifyContent="center"
         p={8}
-        width={{ base: "100%", md: "50%" }} 
+        width={{ base: "100%", md: "50%" }}
       >
-        <Box 
-          p={8} 
-          width="100%" 
-          maxW="400px" 
-          bg="white" 
-          borderRadius="md" 
+        <Box
+          p={8}
+          width="100%"
+          maxW="400px"
+          bg="white"
+          borderRadius="md"
           boxShadow="lg"
         >
           {/* Logo da empresa */}
           <Flex justify="center" mb={6}>
-            <Image 
-              src={logo}  // Caminho da imagem
+            <Image
+              src={logo} // Caminho da imagem
               alt="Logo da empresa"
-              width="150px" 
+              width="150px"
               height="auto"
             />
           </Flex>
@@ -126,33 +143,37 @@ const Login = () => {
 
           <form onSubmit={handleLogin}>
             <FormControl mb={4}>
-              <FormLabel fontSize="sm" fontWeight="bold" color="gray.600">Usuário</FormLabel>
-              <Input 
-                type="email" 
-                placeholder="Digite seu email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
+              <FormLabel fontSize="sm" fontWeight="bold" color="gray.600">
+                Usuário
+              </FormLabel>
+              <Input
+                type="email"
+                placeholder="Digite seu email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 size="lg"
                 borderRadius="full"
               />
             </FormControl>
 
             <FormControl mb={4}>
-              <FormLabel fontSize="sm" fontWeight="bold" color="gray.600">Senha</FormLabel>
-              <Input 
-                type="password" 
-                placeholder="Digite sua senha" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
+              <FormLabel fontSize="sm" fontWeight="bold" color="gray.600">
+                Senha
+              </FormLabel>
+              <Input
+                type="password"
+                placeholder="Digite sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 size="lg"
                 borderRadius="full"
               />
             </FormControl>
 
-            <Button 
-              type="submit" 
-              colorScheme="blue" 
-              width="full" 
+            <Button
+              type="submit"
+              colorScheme="blue"
+              width="full"
               size="lg"
               borderRadius="full"
               mt={4}

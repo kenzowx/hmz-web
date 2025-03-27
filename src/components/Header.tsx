@@ -4,12 +4,27 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ onOpen }: { onOpen: () => void }) => {
   const navigate = useNavigate();
-  
+
   return (
-    <Flex bg="gray.200" p={4} align="center" justify="space-between" boxShadow="md">
+    <Flex
+      bg="gray.200"
+      p={4}
+      align="center"
+      justify="space-between"
+      boxShadow="md"
+    >
       <IconButton icon={<FaBars />} onClick={onOpen} aria-label="Menu" />
-      <Text fontSize="lg" fontWeight="bold">PROTÓTIPO - TELA DE USUÁRIOS</Text>
-      <Button leftIcon={<FaSignOutAlt />} colorScheme="red" onClick={() => navigate("/")}>
+      <Text fontSize="lg" fontWeight="bold">
+        PROTÓTIPO - TELA DE USUÁRIOS
+      </Text>
+      <Button
+        leftIcon={<FaSignOutAlt />}
+        colorScheme="red"
+        onClick={() => {
+          localStorage.removeItem("token"); // ✅ Remove o token do login
+          navigate("/"); // ✅ Redireciona para o login
+        }}
+      >
         Sair
       </Button>
     </Flex>
