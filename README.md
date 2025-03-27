@@ -1,25 +1,16 @@
-# 💻 Sistema de Login com Dashboard
+# 💻 Frontend - Sistema de Login com Dashboard
 
-Este é um projeto fullstack utilizando **React + Vite** no frontend, **Chakra UI** para estilização e **Node.js + Express + Prisma + PostgreSQL** no backend. Ele inclui autenticação de administrador, controle de sessão com JWT e um painel com CRUD de usuários.
+Este é o frontend do sistema de login e gerenciamento de usuários. Desenvolvido com **React + Vite**, utiliza **Chakra UI** para estilização e está integrado com uma API desenvolvida em Node.js + Prisma.
 
 ---
 
 ## 🚀 Tecnologias
 
-### Frontend
 - React + Vite
 - TypeScript
 - Chakra UI
 - Axios
 - React Router DOM
-
-### Backend
-- Node.js + Express
-- TypeScript
-- Prisma ORM
-- PostgreSQL
-- Bcrypt (para senhas)
-- JWT (para autenticação)
 
 ---
 
@@ -29,91 +20,58 @@ Antes de começar, você vai precisar ter instalado:
 
 - [Node.js](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com) ou [npm](https://www.npmjs.com/)
-- [PostgreSQL](https://www.postgresql.org/)
 - [Git](https://git-scm.com/)
-- [PGAdmin (opcional)](https://www.pgadmin.org/) – para gerenciar o banco graficamente
+- A API (backend) rodando – veja abaixo.
+
+---
+
+## 🔗 Backend
+
+O backend está disponível neste repositório:
+
+👉 [Acessar repositório do backend](https://github.com/kenzowx/backend-hmz)
+
+Certifique-se de rodá-lo antes de iniciar o frontend.
 
 ---
 
 ## ⚙️ Como rodar o projeto
 
-### 🔁 Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
-```
+# Clone o repositório
+git clone https://github.com/kenzowx/hmz-web.git
+cd hmz-web
 
----
-
-### 🔧 1. Configurando o backend
-
-```bash
-cd backend-hmz
+# Instale as dependências
 npm install
-```
 
-#### ✨ Configure o banco no arquivo `.env`:
-Crie um arquivo `.env` com base no exemplo:
-
-```
-DATABASE_URL="postgresql://USUARIO:SENHA@localhost:5432/NOME_DO_BANCO"
-JWT_SECRET="seu_token_secreto_aqui"
-```
-
-#### ⚙️ Rode as migrations e crie o banco:
-```bash
-npx prisma migrate dev --name init
-```
-
-#### ▶️ Inicie o servidor:
-```bash
-npx ts-node src/server.ts
-```
-
-> O backend vai rodar por padrão em: http://localhost:3001
-
----
-
-### 🎨 2. Rodando o frontend
-
-```bash
-cd ../vite-project
-npm install
-```
-
-#### ▶️ Inicie o frontend:
-```bash
+# Rode o projeto
 npm run dev
 ```
 
-> O frontend vai rodar por padrão em: http://localhost:5173
+> O projeto estará disponível em: http://localhost:5173
 
 ---
 
 ## 🔐 Login
 
-- Para acessar o dashboard, você precisa estar autenticado.
-- Crie um admin diretamente no banco ou via rota de cadastro (se disponível).
-- O token é armazenado no `localStorage` e usado para verificar o acesso ao dashboard.
+- O login é feito com base na API do backend (via JWT).
+- O token é salvo no localStorage.
+- A rota `/dashboard` é protegida e só pode ser acessada se o usuário estiver logado.
 
 ---
 
 ## 📁 Estrutura do projeto
 
 ```
-├── backend-hmz
-│   ├── src
-│   │   ├── controllers
-│   │   ├── routes
-│   │   ├── prisma
-│   │   └── server.ts
-│   └── .env
-├── vite-project
-│   ├── src
-│   │   ├── pages
-│   │   ├── components
-│   │   ├── services
-│   │   └── main.tsx
+vite-project
+├── src
+│   ├── components
+│   ├── pages
+│   ├── services
+│   ├── routes
+│   └── main.tsx
+└── README.md
 ```
 
 ---
@@ -124,13 +82,13 @@ npm run dev
 - [x] Proteção de rotas
 - [x] Listagem de usuários
 - [x] Criação, edição e exclusão de usuários
-- [x] Responsividade total
-- [x] Feedback visual com Chakra Toasts
+- [x] Responsividade com Chakra UI
+- [x] Feedback visual com Toasts
 
 ---
 
 ## 🧑‍💻 Autor
 
 Desenvolvido por **Eric** ✨  
-🚀 [LinkedIn](https://linkedin.com/in/seu-perfil)  
-📬 eric@email.com
+🚀 [LinkedIn](https://linkedin.com/in/eric-wakasugi)  
+📬 ekenzow@hotmail.com
