@@ -29,6 +29,18 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 5;
   const totalPages = Math.ceil(users.length / usersPerPage);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
+
 
   // ✅ Estado e funções para os modais
   const { isOpen, onOpen, onClose } = useDisclosure(); // Modal de adicionar usuário
@@ -95,18 +107,20 @@ const Dashboard = () => {
 
           {/* ✅ Tabela de usuários */}
           <UserTable
-            users={users}
+            users={currentUsers}
             onEdit={openEditModal}
             onDelete={loadUsers}
           />
 
           {/* ✅ Paginação */}
+        
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            onPrev={() => setCurrentPage(currentPage - 1)}
-            onNext={() => setCurrentPage(currentPage + 1)}
+            onPrev={handlePrevPage}
+            onNext={handleNextPage}
           />
+
         </Box>
       </Flex>
 

@@ -36,6 +36,16 @@ import {
         });
         return;
       }
+
+      if (!isValidEmail(email)) {
+        toast({
+          title: "Formato de e-mail inválido.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+        return;
+      }
   
       try {
         await api.post("/users", { name, email });
@@ -62,6 +72,9 @@ import {
         });
       }
     };
+
+    const isValidEmail = (email: string) =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   
     return (
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -75,7 +88,7 @@ import {
             </FormControl>
             <FormControl mb={4}>
               <FormLabel>Email</FormLabel>
-              <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input  type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </FormControl>
           </ModalBody>
           <ModalFooter>

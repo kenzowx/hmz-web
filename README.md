@@ -90,5 +90,5 @@ vite-project
 ## 🧑‍💻 Autor
 
 Desenvolvido por **Eric** ✨  
-🚀 [LinkedIn](https://linkedin.com/in/eric-wakasugi)  
+🚀 [LinkedIn](https://linkedin.com/in/eric-kenzo-wakasugi)  
 📬 ekenzow@hotmail.com
